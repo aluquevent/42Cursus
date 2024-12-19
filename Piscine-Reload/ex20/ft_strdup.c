@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_params.c                                  :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aluque-v <aluque-v@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/18 15:09:46 by aluque-v          #+#    #+#             */
-/*   Updated: 2024/12/19 11:33:36 by aluque-v         ###   ########.fr       */
+/*   Created: 2024/12/19 10:54:25 by aluque-v          #+#    #+#             */
+/*   Updated: 2024/12/19 11:29:46 by aluque-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-void	ft_putchar(char c);
+#include <stdlib.h>
 
-void	ft_putstr(char *str)
+int	ft_strlen(char *str)
 {
 	int	i;
 
 	i = 0;
 	while (str[i])
-	{
-		ft_putchar(str[i]);
 		i++;
-	}
+	return (i);
 }
 
-int	main(int argc, char **argv)
+char	*ft_strdup(char *src)
 {
-	int	i;
+	char	*dup;
+	int		size;
+	int		i;
 
-	if (argc < 2)
-		return (0);
-	i = 1;
-	while (argv[i])
+	size = ft_strlen(src);
+	dup = (char *)malloc(size * sizeof(char) + 1);
+	if (dup == NULL)
+		return (NULL);
+	i = 0;
+	while (src[i])
 	{
-		ft_putstr(argv[i]);
-		ft_putchar('\n');
+		dup[i] = src[i];
 		i++;
 	}
-	return (0);
+	dup[i] = '\0';
+	return (dup);
 }
