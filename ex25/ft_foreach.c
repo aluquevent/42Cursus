@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.h                                           :+:      :+:    :+:   */
+/*   ft_foreach.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aluque-v <aluque-v@student.42barcelon      +#+  +:+       +#+        */
+/*   By: aluque-v <aluque-v@student.42barcelona.co  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/19 11:20:33 by aluque-v          #+#    #+#             */
-/*   Updated: 2024/12/19 15:19:42 by aluque-v         ###   ########.fr       */
+/*   Created: 2024/12/20 13:18:12 by aluque-v          #+#    #+#             */
+/*   Updated: 2024/12/20 13:21:33 by aluque-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_ABS_H
-#define FT_ABS_H
+void	ft_foreach(int *tab, int length, void (*f)(int))
+{
+	int	i;
 
-#define ABS(Value) (Value * ((Value < 0) * (-1) + (Value > 0)))
-
-#endif
+	i = -1;
+	while (++i < length)
+		f(tab[i]);
+}
