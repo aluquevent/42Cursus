@@ -6,7 +6,7 @@
 /*   By: Xyz <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 22:01:45 by aluque-v          #+#    #+#             */
-/*   Updated: 2024/12/20 22:30:51 by Xyz              ###   ########.fr       */
+/*   Updated: 2024/12/21 17:32:27 by aluque-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ void	ft_read(int filepos)
 	char	c;
 
 	c = '0';
-	while ((read(filepos, &c, sizeof(char)) == 1))
+	while (read(filepos, &c, sizeof(char)) == 1)
 		ft_putchar(c);
+	if (read(filepos, &c, sizeof(char)) == -1)
+		write(2, "Cannot read file.\n", 18);
 }
 
 void	ft_close(int filepos)
@@ -42,6 +44,11 @@ int	ft_display_file(char *str)
 	int	filepos;
 	int	status;
 
+	if (!str)
+	{
+		write(2, "Cannot read file.\n", 18);
+		return (0);
+	}
 	filepos = 0;
 	status = ft_open(str, &filepos);
 	if (status)
@@ -49,9 +56,9 @@ int	ft_display_file(char *str)
 		ft_read(filepos);
 		ft_close(filepos);
 	}
-    else
-    {
-        write(2, "Cannot read file.\n", 20);
-    }
+	else
+	{
+		write(2, "Cannot read file.\n", 18);
+	}
 	return (status);
 }
